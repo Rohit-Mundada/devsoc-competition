@@ -1,6 +1,226 @@
-<html>
-    <p>
-        hello
-    </p>
-    <script src="main.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Note taker</title>
+    <!-- MDB -->
+    <link href="./bootstrap/css/mdb.min.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+    <!-- popper -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+    <!-- MDB -->
+    <script src="./bootstrap/js/mdb.min.js"></script>
+
+</head>
+
+<body id="body">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="#">Note Taker Alpha</a>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                            data-mdb-target="#cardAdder">
+                            New note
+                        </button>
+                    </li>
+                </ul>
+                <!-- Left links -->
+
+                <!-- Search form -->
+                <form class="d-flex input-group w-auto" id="sform">
+                    <input type="search" class="form-control" placeholder="Card title" id="squery"
+                        aria-label="Search" />
+                    <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark"
+                        onclick="searchCard(this)">
+                        Search
+                    </button>
+                </form>
+            </div>
+            <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <div class="Container" style="margin-top: 15px; margin-left: 15px;">
+        <div class="row" id="row">
+            <div class="col-sm-2" id="card1">
+                <div class="card">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text" id="card1Text">
+                            Lorem ipsum
+                        </p>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                            data-mdb-target="#modalCard1">
+                            Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for new card-->
+    <div class="modal fade" id="cardAdder" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCard1Title">Add a new card</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label for="modalAdderTitle">Note title</label><br>
+                        <input type="text" id="modalAdderTitle" name="modalAdderTitle" value=""><br>
+                        <label for="modalAdderContent">Note content</label><br>
+                        <input type="text" id="modalAdderContent" name="modalAdderLink" value=""><br>
+                        <label for="modalAdderLink">Note image link</label><br>
+                        <input type="text" id="modalAdderLink" name="modalAdderLink" value=""><br>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="newCard()" data-mdb-dismiss="modal">Save
+                        changes</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for edit cards-->
+    <div class="modal fade" id="modalCard1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCard1Title">Card1 title</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="text" id="modalCard1Content" name="modalCard1Content" value="Lorem ipsum"><br>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" id="deleteCard1Button" onclick="delCard(this)"
+                        data-mdb-dismiss="modal">Delete card</button>
+                    <button type="button" class="btn btn-primary" id="updateCard1Button" onclick="updateCard(this)"
+                        data-mdb-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    var nos = 1;
+    function updateCard(ele) {
+        var i = ele.id;
+        i = i.charAt(10);
+        var newdata = document.getElementById("modalCard" + i + "Content");
+        var data = document.getElementById("card" + i + "Text");
+        data.innerHTML = newdata.value;
+    }
+
+    function newCard() {
+        nos += 1;
+        var title = document.getElementById("modalAdderTitle").value;
+        var content = document.getElementById("modalAdderContent").value;
+        var link = document.getElementById("modalAdderLink").value;
+        var newCardData = `
+            <div class="col-sm-2">
+                <div class="card" id = card`+ nos.toString() + `>
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="`+ link + `" class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">`+ title + `</h5>
+                        <p class="card-text" id="card`+ nos.toString() + `Text">
+                            `+ content + `
+                        </p>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                            data-mdb-target="#modalCard`+ nos.toString() + `">
+                            Edit
+                        </button>
+                    </div>
+                </div>
+            </div>  
+        `
+        document.getElementById("row").innerHTML += newCardData;
+        setTimeout(function () {
+            var newModalData = `
+        <div class="modal fade" id="modalCard`+ nos.toString() + `" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCard`+ nos.toString() + `Title">` + title + `</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="text" id="modalCard`+ nos.toString() + `Content" name="modalCard` + nos.toString() + `Content" value="` + content + `"><br>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" id="deleteCard`+ nos.toString() + `Button" onclick="delCard(this)"
+                        data-mdb-dismiss="modal">Delete card</button>
+                    <button type="button" class="btn btn-primary" id="updateCard`+ nos.toString() + `Button" onclick="updateCard(this)"
+                        data-mdb-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+        </div>
+        `
+            document.getElementById("body").innerHTML += newModalData;
+        }, 500);
+    }
+
+    /*function searchCard(ele){
+    }*/
+
+    function delCard(ele) {
+        var i = ele.id;
+        i = i.charAt(10);
+        var x = document.getElementById("modalCard" + i);
+        var y = document.getElementById("card" + i);
+        setTimeout(function () { x.remove(); y.remove(); }, 500);
+    }
+
+</script>
+
 </html>
