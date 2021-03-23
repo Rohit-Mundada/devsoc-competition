@@ -116,3 +116,4 @@ function delCard(ele) {
     var y = document.getElementById("card" + i);
     setTimeout(function () { x.remove(); y.remove(); }, 500);
 }
+
