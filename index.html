@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    
+
     <title>Note taker</title>
     <!-- MDB -->
     <link href="./bootstrap/css/mdb.min.css" rel="stylesheet" />
@@ -16,48 +18,62 @@
 
     <!-- MDB -->
     <script src="./bootstrap/js/mdb.min.js"></script>
+    
 
 </head>
 
-<body id="body" style="background: url(./img/img2.jpg); background-size: cover;">
-
+<body >
+    
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- Container wrapper -->
-        <div class="container-fluid">
+        <div class="container-fluid-nav text-center">
             <!-- Navbar brand -->
             <a class="navbar-brand" href="#" style="color: rgb(255, 255, 255);">Note Taker Alpha</a>
-
+            </div>
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left links -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class=" navbar-nav navbar-right>
                     <li class="nav-item">
+                        
                         <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
                             data-mdb-target="#cardAdder">
                             New note
                         </button>
+                        
                     </li>
                 </ul>
+                </nav>
+    
+                <br>
+                <br>
+
                 <!-- Left links -->
 
                 <!-- Search form -->
-                <form class="d-flex input-group w-auto" id="sform">
-                    <input type="search" class="form-control" placeholder="Card title" id="squery"
-                        aria-label="Search" />
-                    <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark"
+                
+                <form class="d-flex input-group w-auto justify-content-center" id="sform" >
+                    
+                    
+                    <div class="form-group col-md-8" ml-auto>
+                    <input type="text" class="form-control" placeholder="Card title" id="squery"
+                        aria-label="Search"/></div>
+                        <div class="form-group col-md-3">
+                    <button class="btn btn-primary rounded-pill btn-block shadow-sm" type="button" data-mdb-ripple-color="dark"
                         onclick="searchCard()">
                         Search
                     </button>
                 </form>
+                
             </div>
             <!-- Collapsible wrapper -->
         </div>
         <!-- Container wrapper -->
-    </nav>
+    <br><br>
     <div class="Container" style="margin-top: 15px; margin-left: 15px;">
         <div class="row" id="row">
-            <div class="col-sm-2" id="card1">
+            <div class="col-sm-3" id="card1">
                 <div class="card">
                     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                         <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
