@@ -113,6 +113,7 @@ function delCard(ele) {
     var i = ele.id;
     i = i.charAt(10);
     var x = document.getElementById("modalCard" + i);
-    var y = document.getElementById("card" + i);
+    //var y = document.getElementById("card" + i);
+    var y = document.getElementById("card" + i).parentElement;
     setTimeout(function () { x.remove(); y.remove(); }, 500);
 }
