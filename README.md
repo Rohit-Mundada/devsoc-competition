@@ -1,3 +1,7 @@
-A DevSoc Organised competition for a group project
+#Note Taker Alpha
 
-This project is a basic event handler
+##A DevSoc Organised competition for a group project
+
+###This project is a basic event handler
+
+Link to the website: [Note Taker Alpha](https://nervous-bartik-a174f2.netlify.app/)
