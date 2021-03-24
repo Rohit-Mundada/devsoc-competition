@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    
+
 
     <title>Note taker</title>
     <!-- MDB -->
@@ -18,12 +18,12 @@
 
     <!-- MDB -->
     <script src="./bootstrap/js/mdb.min.js"></script>
-    
+
 
 </head>
 
 <body id="body" style="background: url(./img/img2.jpg); background-size: cover;" >
-    
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- Container wrapper -->
@@ -37,26 +37,26 @@
                 <ul class=" navbar-nav me-auto mb-2 mb-lg-0">
                     <l class=" navbar-nav navbar-right>
                     <li class="nav-item">
-                        
+
                         <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
                             data-mdb-target="#cardAdder">
                             New note
                         </button>
-                        
+
                     </li>
                 </ul>
                 </nav>
-    
+
                 <br>
                 <br>
 
                 <!-- Left links -->
 
                 <!-- Search form -->
-                
+
                 <form class="d-flex input-group w-auto justify-content-center" id="sform" >
-                    
-                    
+
+
                     <div class="form-group col-md-8">
                     <input type="text" class="form-control" placeholder="Card title" id="squery"
                         aria-label="Search"/></div>
@@ -65,8 +65,9 @@
                         onclick="searchCard()">
                         Search
                     </button>
+                  </div>
                 </form>
-                
+
             </div>
             <!-- Collapsible wrapper -->
         </div>
@@ -74,55 +75,35 @@
     <br><br>
     <div class="Container" style="margin-top: 15px; margin-left: 15px;">
         <div class="row" id="row">
-            <div class="col-sm-2" id="card1">
-            
-                <div class="card">
-                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                        <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
-                        <a href="#!">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text" id="card1Text">
-                            Lorem ipsum
-                        </p>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
-                            data-mdb-target="#modalCard1">
-                            Edit
-                        </button>
-                    </div>
-                </div>
             </div>
-        </div>
+
     </div>
     <!-- Modal for new card-->
     <div class="modal fade" id="cardAdder" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="max-width: 45%;">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalCard1Title">Add a new card</h5>
+                <div class="modal-header border-0 ">
+                    <h5 class="modal-title" id="modalCard1Title">Add Event</h5>
                     <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!--Added due date field and resized things -->
                     <form>
-                        <label for="modalAdderTitle">Note title</label><br>
-                        <input type="text" id="modalAdderTitle" name="modalAdderTitle" value=""><br>
-                        <label for="modalAdderContent">Note content</label><br>
-                        <input type="text" id="modalAdderContent" name="modalAdderLink" value=""><br>
+                        <label for="modalAdderTitle">Title</label><br>
+                        <input type="text" id="modalAdderTitle" name="modalAdderTitle" size="50"   value=""><br><br>
+                        <label for="modalAdderContent">Description</label><br>
+  <!-- Removed input and added text area -->
+                        <textarea class="form-control" id="modalAdderContent" rows="4"></textarea><br>
+                        <label for="modalAdderDueDate"> Due date</label><br>
+                        <input type="date" id="modalAdderDueDate" name="modalAdderLink" size="0" value=""><br><br>
                         <label for="modalAdderLink">Note image link</label><br>
-                        <input type="text" id="modalAdderLink" name="modalAdderLink" value=""><br>
+                        <input type="text" id="modalAdderLink" name="modalAdderLink" size="50" value=""><br>
                     </form>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary" onclick="newCard()" data-mdb-dismiss="modal">Save
-                        changes</button>
+                <div class="modal-footer border-0">
+
+                    <button type="button" class="btn btn-primary me-auto" onclick="newCard()" data-mdb-dismiss="modal">Create event</button>
 
                 </div>
             </div>
@@ -133,23 +114,26 @@
     <div class="modal fade" id="modalCard1" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalCard1Title">Card1 title</h5>
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="modalCard1Title">Edit Event</h5>
                     <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <input type="text" id="modalCard1Content" name="modalCard1Content" value="Lorem ipsum"><br>
+                      <label for="modalEditTitle">Title</label><br>
+                      <input type="text" id="modalEditTitle" name="modalEditTitle" size="50"   value=""><br><br>
+                      <label for="modalEditContent">Description</label><br>
+                      <textarea class="form-control" id="modalEditContent" rows="4"></textarea><br>
+                      <label for="modalEditDueDate"> Due date</label><br>
+                      <input type="date" id="modalEditDueDate" name="modalEditDueDate" size="50" value=""><br><br>
+                      <label for="modalEditLink">Note image link</label><br>
+                      <input type="text" id="modalEditLink" name="modalEditLink" size="50" value=""><br>
+
                     </form>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary" id="deleteCard1Button" onclick="delCard(this)"
-                        data-mdb-dismiss="modal">Delete card</button>
-                    <button type="button" class="btn btn-primary" id="updateCard1Button" onclick="updateCard(this)"
+                <div class="modal-footer border-0">
+                                      <button type="button" class="btn btn-primary" id="updateCard1Button" onclick="updateCard(this)"
                         data-mdb-dismiss="modal">Save changes</button>
                 </div>
             </div>

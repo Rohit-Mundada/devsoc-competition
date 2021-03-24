@@ -47,6 +47,14 @@ function newCard() {
             </div>
             <div class="modal-body">
                 <form>
+                <label for="modalEditTitle">Title</label><br>
+                <input type="text" id="modalEditTitle" name="modalEditTitle" size="50"   value=""><br><br>
+                <label for="modalEditContent">Description</label><br>
+                <textarea class="form-control" id="modalEditContent" rows="4"></textarea><br>
+                <label for="modalEditDueDate"> Due date</label><br>
+                <input type="date" id="modalEditDueDate" name="modalEditDueDate" size="50" value=""><br><br>
+                <label for="modalEditLink">Note image link</label><br>
+                <input type="text" id="modalEditLink" name="modalEditLink" size="50" value=""><br>
                     <input type="text" id="modalCard`+ nos.toString() + `Content" name="modalCard` + nos.toString() + `Content" value="` + content + `"><br>
                 </form>
 
@@ -116,4 +124,3 @@ function delCard(ele) {
     var y = document.getElementById("card" + i);
     setTimeout(function () { x.remove(); y.remove(); }, 500);
 }
-
