@@ -1,4 +1,4 @@
-var total_cards = 1;
+var total_cards = 0;
 var row_number = 1;
 
 function updateCard(ele) {
@@ -25,7 +25,7 @@ function newCard() {
   var link = document.getElementById("modalAdderLink").value;
   var date = document.getElementById("modalAdderDueDate").value;
   var newCardData = `
-        <div class="col-sm-2">
+        <div class="col-sm-3 mx-auto">
             <div class="card" id = card`+ total_cards.toString() + `>
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                     <img id= "card`+ total_cards.toString() + `Link"src="`+ link + `" class="img-fluid" />
@@ -59,9 +59,9 @@ function newCard() {
             </div>
         </div>
     `
-  if (((total_cards - 1) % 6 == 0) && (total_cards != 1)) {
+  if (((total_cards - 1) % 3 == 0) && (total_cards != 1)) {
     row_number += 1;
-    newCardData = `<div class="row mt-3" id="row` + row_number.toString() + `">` + newCardData;
+    newCardData = `<div class="row mt-5 mt-b" id="row` + row_number.toString() + `">` + newCardData;
     newCardData = newCardData + `</div>`;
     document.getElementById("Container").innerHTML += newCardData;
   }
@@ -138,7 +138,7 @@ function searchCard(ele){
     var card_title = document.getElementsByClassName("card")[i].getElementsByClassName("card-body")[0].getElementsByClassName("card-title");
     title_array.push(card_title[0].innerHTML)
   }
-  var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2")
+  var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-3 mx-auto")
   var mismatch_count=0
   var no_matches=document.getElementById("no_matches");
   no_matches.style.display="none";
@@ -153,7 +153,7 @@ function searchCard(ele){
     if(search_text==title_array[i]){
       div_list[i].style.display="block"
     }
-    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2")
+    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-3 mx-auto")
     var mismatch_count = 0
     for (i = 0; i < div_list.length; i++) {
         if (search_text == "") {
@@ -196,7 +196,7 @@ function delCard(ele) {
   i = i.charAt(10);
   var x = document.getElementById("modalCard" + i);
   var y = document.getElementById("card" + i).parentElement;
-  setTimeout(function () { x.remove(); y.remove(); }, 500);
+  setTimeout(function () { x.remove(); y.remove();total_cards-=1; }, 500);
 }
 
 
@@ -220,7 +220,7 @@ function dynamic_search(event) {
       var card_title = document.getElementsByClassName("card")[i].getElementsByClassName("card-body")[0].getElementsByClassName("card-title");
       title_array.push(card_title[0].innerHTML)
     }
-    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2")
+    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-3 mx-auto")
     var mismatch_count = 0
     var no_matches = document.getElementById("no_matches");
     no_matches.style.display = "none";
