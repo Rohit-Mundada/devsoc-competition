@@ -12,6 +12,12 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+
+    <!-- CSS file  -->
+    <link rel="stylesheet" href="style.css">
+
     <!-- popper -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
@@ -23,14 +29,14 @@
 
 </head>
 
-<body id="body" style="background: url(./img/img2.jpg); background-size: cover;" >
+<body id="body" style="background: url(./img/img2.png); background-size: cover;" >
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg" style="background-color: rgb(49, 43, 30);">
         <!-- Container wrapper -->
         <div class="container-fluid-nav text-center">
             <!-- Navbar brand -->
-            <a class="navbar-brand" style="margin-left: 12px;" href="#" style="color: rgb(255, 255, 255);">Note Taker Alpha</a>
+            <a class="navbar-brand" style="margin-left: 12px;" href="#" style="color: rgb(49, 43, 30);">Note Taker Alpha</a>
             </div>
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,9 +45,9 @@
                     <l class=" navbar-nav navbar-right>
                     <li class="nav-item">
 
-                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
-                            data-mdb-target="#cardAdder">
-                            New note
+                        <button type="button" class="btn btn-warning" data-mdb-toggle="modal"
+                            data-mdb-target="#cardAdder" style="color: rgb(49, 43, 30);">
+                            <strong>New Note</strong>
                         </button>
 
                     </li>
@@ -59,9 +65,9 @@
                 <form class="d-flex input-group justify-content-center" id="sform"
                     div class="form-group col-md-4">
 
-                    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4 w-50">
+                    <div class="p-1 bg-dark rounded rounded-pill shadow-sm mb-4 w-50">
                         <div class="input-group" style="margin-left: 5px;">
-                          <input type="text" placeholder="Card title" id="squery" aria-describedby="button-addon1" class="form-control border-0 bg-light" onkeydown="press_enter(event)" onkeyup="dynamic_search(event)" autocomplete="off">
+                          <input type="text" placeholder="Card title" id="squery" aria-describedby="button-addon1" class="form-control border-0" onkeydown="press_enter(event)" onkeyup="dynamic_search(event)" autocomplete="off" style="background-color: rgb(49, 43, 30);">
 
                           <style>
                               input[type="text"]::placeholder
@@ -71,7 +77,7 @@
                               }
                           </style>
                           <div class="input-group-append">
-                            <button id="button-addon1" type="button" class="btn btn-link" onclick="dynamic_search(event)" >go<i class="fa fa-search"></i>
+                            <button id="button-addon1" type="button" class="btn btn-link" onclick="dynamic_search(event)" style="border-end-end-radius: 30%;" ><i class="fa fa-search" style="color: #e0af00;"></i>
                             </button>
 
                         </div>
