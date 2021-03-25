@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <title>Note taker</title>
+    <!-- MDB -->
+    <link href="./bootstrap/css/mdb.min.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+    <!-- popper -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+    <!-- MDB -->
+    <script src="./bootstrap/js/mdb.min.js"></script>
+
+
+</head>
+
+<body id="body" style="background: url(./img/img2.jpg); background-size: cover;" >
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- Container wrapper -->
+        <div class="container-fluid-nav text-center">
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="#" style="color: rgb(255, 255, 255);">Note Taker Alpha</a>
+            </div>
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left links -->
+                <ul class=" navbar-nav me-auto mb-2 mb-lg-0">
+                    <l class=" navbar-nav navbar-right>
+                    <li class="nav-item">
+
+                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                            data-mdb-target="#cardAdder">
+                            New note
+                        </button>
+
+                    </li>
+                </ul>
+                </nav>
+
+                <br>
+                <br>
+
+                <!-- Left links -->
+
+                <!-- Search form -->
+
+
+                <form class="d-flex input-group justify-content-center" id="sform"
+                    div class="form-group col-md-4">
+
+                    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4 w-50">
+                        <div class="input-group">
+                          <input type="text" placeholder="Card title" id="squery" aria-describedby="button-addon1" class="form-control border-0 bg-light" onkeydown="press_enter(event)" onkeyup="dynamic_search(event)" autocomplete="off">
+
+                          <style>
+                              input[type="text"]::placeholder
+                              {
+                                  text-align:center;
+                                  text-indent: 10%;
+                              }
+                          </style>
+                          <div class="input-group-append">
+                            <button id="button-addon1" type="button" class="btn btn-link" onclick="dynamic_search(event)" >go<i class="fa fa-search"></i>
+                            </button>
+
+                        </div>
+                        </div>
+                      </div>
+                    </form>
+
+
+                    <!--Edit starts-->
+                    <div id="no_matches">
+
+                    </div>
+                    <!--Edit ends-->
+
+
+
+
+
+
+            </div>
+
+
+                        <br>
+
+
+
+        <!-- Container wrapper -->
+    <br><br>
+    <div class="Container" style="margin-top: 15px; margin-left: 15px;">
+        <div class="row" id="row">
+            <div class="col-sm-2" id="card1">
+
+                <div class="card">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text" id="card1Text">
+                            Lorem ipsum
+                        </p>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                            data-mdb-target="#modalCard1">
+                            Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for new card-->
+    <div class="modal fade" id="cardAdder" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCard1Title">Add a new card</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label for="modalAdderTitle">Note title</label><br>
+                        <input type="text" id="modalAdderTitle" name="modalAdderTitle" value=""><br>
+                        <label for="modalAdderContent">Note content</label><br>
+                        <input type="text" id="modalAdderContent" name="modalAdderLink" value=""><br>
+                        <label for="modalAdderLink">Note image link</label><br>
+                        <input type="text" id="modalAdderLink" name="modalAdderLink" value=""><br>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="newCard()" data-mdb-dismiss="modal">Save
+                        changes</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for edit cards-->
+    <div class="modal fade" id="modalCard1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCard1Title">Card1 title</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="text" id="modalCard1Content" name="modalCard1Content" value="Lorem ipsum"><br>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" id="deleteCard1Button" onclick="delCard(this)"
+                        data-mdb-dismiss="modal">Delete card</button>
+                    <button type="button" class="btn btn-primary" id="updateCard1Button" onclick="updateCard(this)"
+                        data-mdb-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="main.js"></script>
+
+</html>
