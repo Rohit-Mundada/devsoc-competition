@@ -39,14 +39,15 @@ function newCard() {
                         `+ content + `
                     </p>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
-                        data-mdb-target="#modalCard`+ total_cards.toString() + `">
-                        Edit
-                    </button>
-                    <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
-                        data-mdb-target="#modalCard`+ total_cards.toString() + `Delete">
-                        Delete
-                    </button>
+                    <div class="dropdown">
+                    <button type="dropdown" class="btn btn-primary-link" dropdown-toggle" data-mdb-toggle="dropdown" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `"><span class="iconify" data-icon="bi-three-dots-vertical" data-inline="false"></span></button>
+                    <div class="dropdown-menu">
+                        <a href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `">Edit</a> <br>
+                        <a href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `Delete"">Delete</a> <br>
+                        
+                
+                </div></div>
+
 
 
 
