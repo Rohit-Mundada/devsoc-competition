@@ -96,16 +96,30 @@ function newCard() {
     }, 500);
 }
 
-
-function searchCard(ele) {
-    var squery = document.getElementById("squery");
-    var search_text = squery.value;
-    //console.log(search_text)
-    var title_array = [];
-    var card_list = document.getElementsByClassName("card")
-    for (i = 0; i < card_list.length; i++) {
-        var card_title = document.getElementsByClassName("card")[i].getElementsByClassName("card-body")[0].getElementsByClassName("card-title");
-        title_array.push(card_title[0].innerHTML)
+/*
+function searchCard(ele){
+  var squery=document.getElementById("squery");
+  var search_text=squery.value;
+  var title_array=[];
+  var card_list = document.getElementsByClassName("card")
+  for(i=0;i<card_list.length;i++){
+    var card_title = document.getElementsByClassName("card")[i].getElementsByClassName("card-body")[0].getElementsByClassName("card-title");
+    title_array.push(card_title[0].innerHTML)
+  }
+  var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2")
+  var mismatch_count=0
+  var no_matches=document.getElementById("no_matches");
+  no_matches.style.display="none";
+  for(i=0;i<div_list.length;i++){
+    if(search_text==""){
+      for(i=0;i<div_list.length;i++){
+        div_list[i].style.display="block"
+      }
+      //alert('Please type something in search field')
+      break
+    }
+    if(search_text==title_array[i]){
+      div_list[i].style.display="block"
     }
     var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2")
     var mismatch_count = 0
@@ -125,17 +139,25 @@ function searchCard(ele) {
             mismatch_count++
         }
     }
-    if (mismatch_count == div_list.length) {
-        for (i = 0; i < div_list.length; i++) {
-            div_list[i].style.display = "block"
-        }
-        alert('No matches')
+  }
+
+  if (mismatch_count==div_list.length){
+    for(i=0;i<div_list.length;i++){
+      div_list[i].style.display="none"
     }
-    //console.log(search_text)
-    //temp[1].style.display="none"
-    //console.log(temp[0].style)
-    //console.log(title_array)
+    //alert('No matches')
+    no_matches.style.display="block";
+    no_matches.innerHTML="Sorry, there are no results that match your search";
+    no_matches.style.fontSize="40px"
+  }
+
+
+  //console.log(search_text)
+  //temp[1].style.display="none"
+  //console.log(temp[0].style)
+  //console.log(title_array)
 }
+*/
 
 function delCard(ele) {
     var i = ele.id;
@@ -143,4 +165,66 @@ function delCard(ele) {
     var x = document.getElementById("modalCard" + i);
     var y = document.getElementById("card" + i).parentElement;
     setTimeout(function () { x.remove(); y.remove(); }, 500);
+}
+
+
+function press_enter(event){
+  //console.log(event);
+  var x =event.keyCode;
+  if(x === 13){
+    event.preventDefault();
+    document.getElementById("button-addon1").click();
+  }
+}
+
+function dynamic_search(event){
+  var x =event.keyCode;
+  if(x>=32 || x===8)
+  {
+    var squery=document.getElementById("squery");
+    var search_text=squery.value;
+    var title_array=[];
+    var card_list = document.getElementsByClassName("card")
+    for(i=0;i<card_list.length;i++){
+      var card_title = document.getElementsByClassName("card")[i].getElementsByClassName("card-body")[0].getElementsByClassName("card-title");
+      title_array.push(card_title[0].innerHTML)
+    }
+    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2")
+    var mismatch_count=0
+    var no_matches=document.getElementById("no_matches");
+    no_matches.style.display="none";
+    var search_length = search_text.length
+    //console.log(search_length)
+    for(i=0;i<div_list.length;i++){
+      if(search_text==""){
+        for(i=0;i<div_list.length;i++){
+          div_list[i].style.display="block"
+        }
+        //alert('Please type something in search field')
+        break
+      }
+      console.log("i:",i)
+      console.log("search text(LHS):",search_text)
+      console.log("RHS:",title_array[i].slice(0,search_length))
+      if(search_text==(title_array[i].slice(0,search_length))){
+        console.log("i got in:",i)
+        div_list[i].style.display="block"
+      }
+      else{
+        div_list[i].style.display="none"
+        mismatch_count++
+      }
+    }
+
+    if (mismatch_count==div_list.length){
+      for(i=0;i<div_list.length;i++){
+        div_list[i].style.display="none"
+      }
+      //alert('No matches')
+      no_matches.style.display="block";
+      no_matches.innerHTML="Sorry, there are no results that match your search";
+      no_matches.style.fontSize="40px"
+    }
+  }
+
 }
