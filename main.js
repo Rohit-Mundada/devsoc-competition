@@ -1,4 +1,6 @@
-var nos = 1;
+var total_cards = 1;
+var row_number = 1;
+
 function updateCard(ele) {
     var i = ele.id;
     i = i.charAt(10);
@@ -8,13 +10,13 @@ function updateCard(ele) {
 }
 
 function newCard() {
-    nos += 1;
+    total_cards += 1;
     var title = document.getElementById("modalAdderTitle").value;
     var content = document.getElementById("modalAdderContent").value;
     var link = document.getElementById("modalAdderLink").value;
     var newCardData = `
         <div class="col-sm-2">
-            <div class="card" id = card`+ nos.toString() + `>
+            <div class="card" id = card`+ total_cards.toString() + `>
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                     <img src="`+ link + `" class="img-fluid" />
                     <a href="#!">
@@ -23,31 +25,49 @@ function newCard() {
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">`+ title + `</h5>
-                    <p class="card-text" id="card`+ nos.toString() + `Text">
+                    <p class="card-text" id="card`+ total_cards.toString() + `Text">
                         `+ content + `
                     </p>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
-                        data-mdb-target="#modalCard`+ nos.toString() + `">
+                        data-mdb-target="#modalCard`+ total_cards.toString() + `">
                         Edit
                     </button>
                 </div>
             </div>
         </div>
     `
-    document.getElementById("row").innerHTML += newCardData;
+    if (((total_cards-1) % 6 == 0) && (total_cards !=1)) {
+        row_number += 1;
+        newCardData = `<div class="row mt-3" id="row` + row_number.toString() + `">` + newCardData;
+        newCardData = newCardData + `</div>`;
+        document.getElementById("Container").innerHTML += newCardData;
+    }
+    else {
+        document.getElementById("row" + row_number.toString()).innerHTML += newCardData;
+    }
+
+
     setTimeout(function () {
         var newModalData = `
-    <div class="modal fade" id="modalCard`+ nos.toString() + `" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalCard`+ total_cards.toString() + `" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCard`+ nos.toString() + `Title">` + title + `</h5>
+                <h5 class="modal-title" id="modalCard`+ total_cards.toString() + `Title">` + title + `</h5>
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
-                    <input type="text" id="modalCard`+ nos.toString() + `Content" name="modalCard` + nos.toString() + `Content" value="` + content + `"><br>
+                <label for="modalEditTitle">Title</label><br>
+                <input type="text" id="modalEditTitle" name="modalEditTitle" size="50"   value=""><br><br>
+                <label for="modalEditContent">Description</label><br>
+                <textarea class="form-control" id="modalEditContent" rows="4"></textarea><br>
+                <label for="modalEditDueDate"> Due date</label><br>
+                <input type="date" id="modalEditDueDate" name="modalEditDueDate" size="50" value=""><br><br>
+                <label for="modalEditLink">Note image link</label><br>
+                <input type="text" id="modalEditLink" name="modalEditLink" size="50" value=""><br>
+
                 </form>
 
             </div>
@@ -55,9 +75,9 @@ function newCard() {
                 <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
                     Close
                 </button>
-                <button type="button" class="btn btn-primary" id="deleteCard`+ nos.toString() + `Button" onclick="delCard(this)"
+                <button type="button" class="btn btn-primary" id="deleteCard`+ total_cards.toString() + `Button" onclick="delCard(this)"
                     data-mdb-dismiss="modal">Delete card</button>
-                <button type="button" class="btn btn-primary" id="updateCard`+ nos.toString() + `Button" onclick="updateCard(this)"
+                <button type="button" class="btn btn-primary" id="updateCard`+ total_cards.toString() + `Button" onclick="updateCard(this)"
                     data-mdb-dismiss="modal">Save changes</button>
             </div>
         </div>
@@ -93,9 +113,23 @@ function searchCard(ele){
     if(search_text==title_array[i]){
       div_list[i].style.display="block"
     }
-    else{
-      div_list[i].style.display="none"
-      mismatch_count++
+    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2")
+    var mismatch_count = 0
+    for (i = 0; i < div_list.length; i++) {
+        if (search_text == "") {
+            for (i = 0; i < div_list.length; i++) {
+                div_list[i].style.display = "block"
+            }
+            alert('Please type something in search field')
+            break
+        }
+        if (search_text == title_array[i]) {
+            div_list[i].style.display = "block"
+        }
+        else {
+            div_list[i].style.display = "none"
+            mismatch_count++
+        }
     }
   }
 
@@ -121,7 +155,6 @@ function delCard(ele) {
     var i = ele.id;
     i = i.charAt(10);
     var x = document.getElementById("modalCard" + i);
-    //var y = document.getElementById("card" + i);
     var y = document.getElementById("card" + i).parentElement;
     setTimeout(function () { x.remove(); y.remove(); }, 500);
 }
