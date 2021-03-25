@@ -33,6 +33,18 @@ function newCard() {
                         data-mdb-target="#modalCard`+ total_cards.toString() + `">
                         Edit
                     </button>
+                    <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                        data-mdb-target="#modalCard`+ total_cards.toString() + `">
+                        Delete
+                    </button>
+
+
+
+
+
+          <!-- The delete button has to be fixed now it works as an Edit button  -->
+
+
                 </div>
             </div>
         </div>
@@ -53,7 +65,7 @@ function newCard() {
     <div class="modal fade" id="modalCard`+ total_cards.toString() + `" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header border-0">
                 <h5 class="modal-title" id="modalCard`+ total_cards.toString() + `Title">` + title + `</h5>
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -71,12 +83,8 @@ function newCard() {
                 </form>
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                    Close
-                </button>
-                <button type="button" class="btn btn-primary" id="deleteCard`+ total_cards.toString() + `Button" onclick="delCard(this)"
-                    data-mdb-dismiss="modal">Delete card</button>
+            <div class="modal-footer border-0">
+
                 <button type="button" class="btn btn-primary" id="updateCard`+ total_cards.toString() + `Button" onclick="updateCard(this)"
                     data-mdb-dismiss="modal">Save changes</button>
             </div>
