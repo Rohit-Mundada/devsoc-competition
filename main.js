@@ -15,7 +15,7 @@ function updateCard(ele) {
   var newimg = document.getElementById("modalCard" + i + "Link");
   var img = document.getElementById("card" + i + "Link");
   img.src = newimg.value;
-  
+
 }
 
 function newCard() {
@@ -214,11 +214,14 @@ function dynamic_search(event) {
   if (x >= 32 || x === 8) {
     var squery = document.getElementById("squery");
     var search_text = squery.value;
+    search_text=search_text.toLowerCase();
     var title_array = [];
     var card_list = document.getElementsByClassName("card")
     for (i = 0; i < card_list.length; i++) {
       var card_title = document.getElementsByClassName("card")[i].getElementsByClassName("card-body")[0].getElementsByClassName("card-title");
-      title_array.push(card_title[0].innerHTML)
+      //console.log(card_title[0].innerHTML)
+      var title=card_title[0].innerHTML.toLowerCase();
+      title_array.push(title);
     }
     var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-3 mx-auto")
     var mismatch_count = 0
