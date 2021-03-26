@@ -3,10 +3,18 @@ var row_number = 1;
 
 function updateCard(ele) {
   var i = ele.id;
+  var flag=0;
   i = i.charAt(10);
-  var newcontent = document.getElementById("modalCard" + i + "Content");
+  var newcontent = document.getElementById("modalCard" + i + "Content").value;
   var content = document.getElementById("card" + i + "Text");
-  content.innerHTML = newcontent.value;
+  if (newcontent.length >= 20) {
+    flag=1;
+    newcontent = newcontent.slice(0, 20) + `<span id="dots` + i + `">...</span><span style="display: none;" id="more` + i + `">` + newcontent.slice(20, newcontent.length) + `</span>`
+  }
+  else{
+    flag=2;
+  }
+  content.innerHTML = newcontent;
   var newtitle = document.getElementById("modalCard" + i + "NewTitle");
   var title1 = document.getElementById("modalCard" + i + "Title");
   var title2 = document.getElementById("card" + i + "Title");
@@ -15,35 +23,56 @@ function updateCard(ele) {
   var newimg = document.getElementById("modalCard" + i + "Link");
   var img = document.getElementById("card" + i + "Link");
   img.src = newimg.value;
+  var dots = document.getElementById("dots" + i);
+  var moreText = document.getElementById("more" + i);
+  var btn = document.getElementById("readmore" + i);
+  if (flag==1){
+    dots.style.display = "inline";
+    moreText.style.display = "none";
+    btn.innerHTML = "Read more";
+  }
+  else if (flag==2){
+    btn.innerHTML = "Read more";
+  }
 
 }
-
+imgno = Math.floor(Math.random() * 100);
 function newCard() {
+  imgno += 1;
   total_cards += 1;
   var title = document.getElementById("modalAdderTitle").value;
   var content = document.getElementById("modalAdderContent").value;
   var link = document.getElementById("modalAdderLink").value;
   var date = document.getElementById("modalAdderDueDate").value;
+  var ran = Math.floor(Math.random() * 100);
+  if (content == "") { content = postjson[ran].body; }
+  if (title == "") { title = postjson[ran].title; }
+  if (content.length >= 20) {
+    content2 = content.slice(0, 20) + `<span id="dots` + total_cards.toString() + `">...</span><span style="display: none;" id="more` + total_cards.toString() + `">` + content.slice(20, content.length) + `</span>`
+  }
+  if (link == "") { link = "https://picsum.photos/id/" + imgno.toString() + "/600"; }
+
   var newCardData = `
-        <div class="col-sm-3 mx-auto">
+        <div class="col-sm-2 mx-auto">
             <div class="card" id = card`+ total_cards.toString() + `>
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img id= "card`+ total_cards.toString() + `Link"src="`+ link + `" class="img-fluid" />
+                    <img id= "card`+ total_cards.toString() + `Link"src="` + link + `" class="img-fluid"/>
                     <a href="#!">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title" id="card`+ total_cards.toString() + `Title">`+ title + `</h5>
+                    <h5 class="card-title" id="card`+ total_cards.toString() + `Title">` + title + `</h5>
                     <p class="card-text" id="card`+ total_cards.toString() + `Text">
-                        `+ content + `
+                        `+ content2 + `
                     </p>
                     <!-- Button trigger modal -->
                     <div class="dropdown">
-                    <button type="dropdown" class="btn btn-primary-link" dropdown-toggle" data-mdb-toggle="dropdown" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `"><span class="iconify" data-icon="bi-three-dots-vertical" data-inline="false"></span></button>
+                    <button type="dropdown" style="position: relative; float: right;" class="btn btn-primary-link" dropdown-toggle" data-mdb-toggle="dropdown" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `"><span class="iconify" data-icon="bi-three-dots-vertical" data-inline="false"></span></button>
                     <div class="dropdown-menu aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `">Edit</a>
-                        <a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `Delete"">Delete</a> 
+                        <a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `Delete"">Delete</a>
+                        <a class="dropdown-item" href="#" onclick="readMore(this)" id="readmore`+ total_cards.toString() + `"">Read More</a> 
                         
                 
                 </div></div>
@@ -139,7 +168,7 @@ function searchCard(ele){
     var card_title = document.getElementsByClassName("card")[i].getElementsByClassName("card-body")[0].getElementsByClassName("card-title");
     title_array.push(card_title[0].innerHTML)
   }
-  var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-3 mx-auto")
+  var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2 mx-auto")
   var mismatch_count=0
   var no_matches=document.getElementById("no_matches");
   no_matches.style.display="none";
@@ -154,7 +183,7 @@ function searchCard(ele){
     if(search_text==title_array[i]){
       div_list[i].style.display="block"
     }
-    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-3 mx-auto")
+    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2 mx-auto")
     var mismatch_count = 0
     for (i = 0; i < div_list.length; i++) {
         if (search_text == "") {
@@ -197,7 +226,7 @@ function delCard(ele) {
   i = i.charAt(10);
   var x = document.getElementById("modalCard" + i);
   var y = document.getElementById("card" + i).parentElement;
-  setTimeout(function () { x.remove(); y.remove();total_cards-=1; }, 500);
+  setTimeout(function () { x.remove(); y.remove(); total_cards -= 1; }, 500);
 }
 
 
@@ -215,16 +244,16 @@ function dynamic_search(event) {
   if (x >= 32 || x === 8) {
     var squery = document.getElementById("squery");
     var search_text = squery.value;
-    search_text=search_text.toLowerCase();
+    search_text = search_text.toLowerCase();
     var title_array = [];
     var card_list = document.getElementsByClassName("card")
     for (i = 0; i < card_list.length; i++) {
       var card_title = document.getElementsByClassName("card")[i].getElementsByClassName("card-body")[0].getElementsByClassName("card-title");
       //console.log(card_title[0].innerHTML)
-      var title=card_title[0].innerHTML.toLowerCase();
+      var title = card_title[0].innerHTML.toLowerCase();
       title_array.push(title);
     }
-    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-3 mx-auto")
+    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2 mx-auto")
     var mismatch_count = 0
     var no_matches = document.getElementById("no_matches");
     no_matches.style.display = "none";
@@ -263,4 +292,27 @@ function dynamic_search(event) {
     }
   }
 
+}
+
+var postjson;
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+  .then(response => response.json())
+  .then(data => { postjson = data; });
+
+function readMore(ele) {
+  var no = ele.id.charAt(8);
+  var dots = document.getElementById("dots" + no);
+  var moreText = document.getElementById("more" + no);
+  var btn = document.getElementById("readmore" + no);
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    moreText.style.display = "none";
+    btn.innerHTML = "Read more";
+  } else {
+    dots.style.display = "none";
+    moreText.style.display = "inline";
+    btn.innerHTML = "Read less";
+  }
 }

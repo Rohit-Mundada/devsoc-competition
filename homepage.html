@@ -36,7 +36,7 @@
         <!-- Container wrapper -->
         <div class="container-fluid-nav text-center">
             <!-- Navbar brand -->
-            <a class="navbar-brand" style="margin-left: 12px;" href="#" style="color: rgb(49, 43, 30);">Note Taker Alpha</a>
+            <a class="navbar-brand" style="margin-left: 12px;" href="#" style="">Note Taker Alpha</a>
             </div>
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -122,8 +122,7 @@
                         <label for="modalAdderTitle">Title</label><br>
                         <input type="text" id="modalAdderTitle" name="modalAdderTitle" size="50"   value=""><br><br>
                         <label for="modalAdderContent">Description</label><br>
-  <!-- Removed input and added text area -->
-                        <textarea class="form-control" id="modalAdderContent" rows="4"></textarea><br>
+                        <textarea class="form-control" id="modalAdderContent" rows="4" style="padding-left: 5px;"></textarea><br>
                         <label for="modalAdderDueDate"> Due date</label><br>
                         <input type="date" id="modalAdderDueDate" name="modalAdderLink" size="0" value=""><br><br>
                         <label for="modalAdderLink">Note image link</label><br>
@@ -141,36 +140,6 @@
         </div>
     </div>
 
-    <!-- Modal for edit cards-->
-    <div class="modal fade" id="modalCard1" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="modalCard1Title">Edit Event</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                      <label for="modalEditTitle">Title</label><br>
-                      <input type="text" id="modalEditTitle" name="modalEditTitle" size="50"   value=""><br><br>
-                      <label for="modalEditContent">Description</label><br>
-                      <textarea class="form-control" id="modalEditContent" rows="4"></textarea><br>
-                      <label for="modalEditDueDate"> Due date</label><br>
-                      <input type="date" id="modalEditDueDate" name="modalEditDueDate" size="50" value=""><br><br>
-                      <label for="modalEditLink">Note image link</label><br>
-                      <input type="text" id="modalEditLink" name="modalEditLink" size="50" value=""><br>
-
-                    </form>
-
-                </div>
-                <div class="modal-footer border-0">
-                  <button type="button" class="btn btn-primary" id="updateCard1Button" onclick="updateCard(this)" data-mdb-dismiss="modal">Save changes</button>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
 
 
 
