@@ -1,5 +1,7 @@
 var total_cards = 2;
 var row_number = 1;
+
+
 function updateCard(ele) {
   var i = ele.id;
   var flag = 0;
@@ -15,9 +17,7 @@ function updateCard(ele) {
   }
   content.innerHTML = newcontent;
   var newtitle = document.getElementById("modalCard" + i + "NewTitle");
-  var title1 = document.getElementById("modalCard" + i + "Title");
   var title2 = document.getElementById("card" + i + "Title");
-  title1.innerHTML = newtitle.value;
   title2.innerHTML = newtitle.value;
   var newimg = document.getElementById("modalCard" + i + "Link");
   var img = document.getElementById("card" + i + "Link");
@@ -45,6 +45,8 @@ function newCard() {
   var link = document.getElementById("modalAdderLink").value;
   var date = document.getElementById("modalAdderDueDate").value;
   var ran = Math.floor(Math.random() * 100);
+  //var now = new Date();
+  //console.log(date, now);
   if ((content == "") && (title == "")) { content = postjson[ran].body; title = postjson[ran].title; }
   if (content.length >= 20) {
     content2 = content.slice(0, 20) + `<span id="dots` + total_cards.toString() + `">...</span><span style="display: none;" id="more` + total_cards.toString() + `">` + content.slice(20, content.length) + `</span>`
@@ -52,8 +54,8 @@ function newCard() {
   if (link == "") { link = "https://picsum.photos/id/" + imgno.toString() + "/600"; }
 
   var newCardData = `
-        <div class="col-sm-2 mx-auto">
-            <div class="card" id = card`+ total_cards.toString() + `>
+        <div class="col-sm-3 mx-auto">
+            <div class="card shadow-5-strong" id = card`+ total_cards.toString() + `>
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                     <img id= "card`+ total_cards.toString() + `Link"src="` + link + `" class="img-fluid"/>
                     <a href="#!">
@@ -61,32 +63,29 @@ function newCard() {
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title" id="card`+ total_cards.toString() + `Title">` + title + `</h5>
+                <div class="dropdown">
+                    <button type="dropdown" style="position: relative; float: right;" class="btn btn-primary-link" dropdown-toggle" data-mdb-toggle="dropdown" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `"><span class="iconify" data-icon="bi-three-dots-vertical" data-inline="false"></span></button>
+                    <div class="dropdown-menu aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item"  data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `">Edit</a>
+                        <a class="dropdown-item"  data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `Delete"">Delete</a>
+                        <a class="dropdown-item"  onclick="readMore(this)" id="readmore`+ total_cards.toString() + `"">Read More</a>
+
+
+                </div>
+              </div>
+                    <h5 class="card-title" id="card`+ total_cards.toString() + `Title" style="padding-right:5px;">` + title + `</h5>
                     <p class="card-text" id="card`+ total_cards.toString() + `Text">
                         `+ content2 + `
                     </p>
+                    
+                    <p style="font-style: italic;font-size:small;">Due on `+ date + `</p>
                     <!-- Button trigger modal -->
-                    <div class="dropdown">
-                    <button type="dropdown" style="position: relative; float: right;" class="btn btn-primary-link" dropdown-toggle" data-mdb-toggle="dropdown" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `"><span class="iconify" data-icon="bi-three-dots-vertical" data-inline="false"></span></button>
-                    <div class="dropdown-menu aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `">Edit</a>
-                        <a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `Delete"">Delete</a>
-                        <a class="dropdown-item" href="#" onclick="readMore(this)" id="readmore`+ total_cards.toString() + `"">Read More</a> 
-                        
-                
-                </div></div>
-
-
-
-
-
-
-          <!-- The delete button has to be fixed now it works as an Edit button  -->
+                    
 
 
                 </div>
             </div>
-        </div>
+        
     `
   if (((total_cards - 1) % 3 == 0) && (total_cards != 1)) {
     row_number += 1;
@@ -105,7 +104,7 @@ function newCard() {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="modalCard`+ total_cards.toString() + `Title">` + title + `</h5>
+                <h5 class="modal-title" id="modalCard`+ total_cards.toString() + `Title">Edit event</h5>
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -136,7 +135,7 @@ function newCard() {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="modalCard`+ total_cards.toString() + `DeleteTitle">` + title + `</h5>
+                <h5 class="modal-title" id="modalCard`+ total_cards.toString() + `DeleteTitle">Delete event</h5>
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -157,68 +156,7 @@ function newCard() {
   }, 500);
 }
 
-/*
-function searchCard(ele){
-  var squery=document.getElementById("squery");
-  var search_text=squery.value;
-  var title_array=[];
-  var card_list = document.getElementsByClassName("card")
-  for(i=0;i<card_list.length;i++){
-    var card_title = document.getElementsByClassName("card")[i].getElementsByClassName("card-body")[0].getElementsByClassName("card-title");
-    title_array.push(card_title[0].innerHTML)
-  }
-  var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2 mx-auto")
-  var mismatch_count=0
-  var no_matches=document.getElementById("no_matches");
-  no_matches.style.display="none";
-  for(i=0;i<div_list.length;i++){
-    if(search_text==""){
-      for(i=0;i<div_list.length;i++){
-        div_list[i].style.display="block"
-      }
-      //alert('Please type something in search field')
-      break
-    }
-    if(search_text==title_array[i]){
-      div_list[i].style.display="block"
-    }
-    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2 mx-auto")
-    var mismatch_count = 0
-    for (i = 0; i < div_list.length; i++) {
-        if (search_text == "") {
-            for (i = 0; i < div_list.length; i++) {
-                div_list[i].style.display = "block"
-            }
-            alert('Please type something in search field')
-            break
-        }
-        if (search_text == title_array[i]) {
-            div_list[i].style.display = "block"
-        }
-        else {
-            div_list[i].style.display = "none"
-            mismatch_count++
-        }
-    }
-  }
 
-  if (mismatch_count==div_list.length){
-    for(i=0;i<div_list.length;i++){
-      div_list[i].style.display="none"
-    }
-    //alert('No matches')
-    no_matches.style.display="block";
-    no_matches.innerHTML="Sorry, there are no results that match your search";
-    no_matches.style.fontSize="40px"
-  }
-
-
-  //console.log(search_text)
-  //temp[1].style.display="none"
-  //console.log(temp[0].style)
-  //console.log(title_array)
-}
-*/
 
 function delCard(ele) {
   var i = ele.id;
@@ -252,7 +190,7 @@ function dynamic_search(event) {
       var title = card_title[0].innerHTML.toLowerCase();
       title_array.push(title);
     }
-    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-2 mx-auto")
+    var div_list = document.getElementsByClassName("Container")[0].getElementsByClassName("col-sm-3 mx-auto")
     var mismatch_count = 0
     var no_matches = document.getElementById("no_matches");
     no_matches.style.display = "none";
