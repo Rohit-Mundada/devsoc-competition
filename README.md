@@ -7,7 +7,7 @@
 Link to the website: [Note Taker Alpha](https://nervous-bartik-a174f2.netlify.app/)
 
 ## Manage your Day!
-#### Memo
+#### Organise your tasks and keep your 
 
 
 ## Creating notes

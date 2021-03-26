@@ -1,5 +1,6 @@
 var total_cards = 2;
 var row_number = 1;
+
 function updateCard(ele) {
   var i = ele.id;
   var flag = 0;
@@ -21,8 +22,8 @@ function updateCard(ele) {
     flag = 2;
   }
   content.innerHTML = newcontent;
-  var newtitle = document.getElementById("modalCard" + i + "NewTitle");
-  var title2 = document.getElementById("card" + i + "Title");
+  var newtitle = document.getElementById('modalCard' + i + 'NewTitle');
+  var title2 = document.getElementById('card' + i + 'Title');
   title2.innerHTML = newtitle.value;
   var newimg = document.getElementById('modalCard' + i + 'Link');
   var img = document.getElementById('card' + i + 'Link');
@@ -69,9 +70,12 @@ function newCard() {
     link = 'https://picsum.photos/id/' + imgno.toString() + '/600';
   }
 
-  var newCardData = `
+  var newCardData =
+    `
         <div class="col-sm-3 mx-auto">
-            <div class="card shadow-5-strong" id = card`+ total_cards.toString() + `>
+            <div class="card shadow-5-strong" id = card` +
+    total_cards.toString() +
+    ` style = "margin : 15px;">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                     <img id= "card` +
     total_cards.toString() +
@@ -97,12 +101,6 @@ function newCard() {
                         <a class="dropdown-item"  onclick="readMore(this)" id="readmore` +
     total_cards.toString() +
     `"">Read More</a>
-                    <button type="dropdown" style="position: relative; float: right;" class="btn btn-primary-link" dropdown-toggle" data-mdb-toggle="dropdown" data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `"><span class="iconify" data-icon="bi-three-dots-vertical" data-inline="false"></span></button>
-                    <div class="dropdown-menu aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item"  data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `">Edit</a>
-                        <a class="dropdown-item"  data-mdb-toggle="modal" data-mdb-target="#modalCard`+ total_cards.toString() + `Delete"">Delete</a>
-                        <a class="dropdown-item"  onclick="readMore(this)" id="readmore`+ total_cards.toString() + `"">Read More</a>
-
 
 
                 </div>
@@ -123,12 +121,6 @@ function newCard() {
                     <p style="font-style: italic;font-size:small;">Due on ` +
     date +
     `</p>
-                    <h5 class="card-title" id="card`+ total_cards.toString() + `Title" style="padding-right:5px;">` + title + `</h5>
-                    <p class="card-text" id="card`+ total_cards.toString() + `Text">
-                        `+ content2 + `
-                    </p>
-                    
-                    <p style="font-style: italic;font-size:small;">Due on `+ date + `</p>
                     <!-- Button trigger modal -->
                     
 
@@ -137,7 +129,7 @@ function newCard() {
             </div>
         
     `;
-  if (((total_cards - 1) % 3 == 0) && (total_cards != 1)) {
+  if ((total_cards - 1) % 3 == 0 && total_cards != 1) {
     row_number += 1;
     newCardData =
       `<div class="row mt-5 mt-b" id="row` +
@@ -242,6 +234,7 @@ function newCard() {
     document.getElementById('body').innerHTML += newModalDeleteData;
   }, 500);
 }
+
 function delCard(ele) {
   var i = ele.id;
   i = i.charAt(10);
