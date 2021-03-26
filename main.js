@@ -1,4 +1,4 @@
-var total_cards = 0;
+var total_cards = 2;
 var row_number = 1;
 function updateCard(ele) {
   var i = ele.id;
@@ -315,4 +315,3 @@ function readMore(ele) {
     btn.innerHTML = "Read less";
   }
 }
-setTimeout(function(){newCard();newCard();},100);
