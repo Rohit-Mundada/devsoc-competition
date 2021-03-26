@@ -1,4 +1,9 @@
-.btn-link.active, .btn-link.active:focus, .btn-link.focus, .btn-link:active, .btn-link:active:focus, .btn-link:focus, .btn-link:hover {
-    box-shadow: none;
-    background-color: rgb(49, 43, 30);
+.btn-link.active,
+.btn-link.active:focus,
+.btn-link.focus,
+.btn-link:active,
+.btn-link:active:focus,
+.btn-link:focus,
+.btn-link:hover {
+  background-color: rgb(49, 43, 30);
 }
