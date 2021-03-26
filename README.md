@@ -20,7 +20,7 @@ Link to the website: [Event Maker](https://event-maker.netlify.app/)
 
 ## Edit and Delete Events
 #### Easily edit event cards on a click
-* ![](https://i.imgur.com/SIVUPEMm.png)
+* ![](https://i.imgur.com/V4Y8W5rm.png)
 
 ## Search
 #### Search for your events easily
