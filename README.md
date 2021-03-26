@@ -9,11 +9,11 @@ Link to the website: [Event Maker](https://event-maker.netlify.app/)
 
 ## Manage your Day!
 #### Organise your tasks and keep your schedule organised.
-* ![](https://i.imgur.com/r6NTqSy.png)
+* ![](https://i.imgur.com/r6NTqSym.png)
 
 ## Creating notes
 #### Tap **NEW NOTE** button at the top of the main screen to create notes.
-* ![](https://i.imgur.com/NZcFs5hm.png)
+* ![](https://i.imgur.com/LxwCeItm.png)
 
 ## Add Images
 #### You can add images to your event using links
@@ -24,5 +24,5 @@ Link to the website: [Event Maker](https://event-maker.netlify.app/)
 
 ## Search
 #### Search for your events easily
-* ![](https://i.imgur.com/KqsvpoT.png)
-* ![](https://i.imgur.com/F8EPhIJ.png)
+* ![](https://i.imgur.com/KqsvpoTm.png)
+* ![](https://i.imgur.com/F8EPhIJm.png)
