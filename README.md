@@ -19,4 +19,5 @@ Link to the website: [Note Taker Alpha](https://nervous-bartik-a174f2.netlify.ap
 ![Add Image]()
 
 ## Edit and Delete Events
-####
+#### Easily edit event cards on a click
+![Edit]()
