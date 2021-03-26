@@ -20,4 +20,4 @@ Link to the website: [Event Maker](https://event-maker.netlify.app/)
 
 ## Edit and Delete Events
 #### Easily edit event cards on a click
-![Edit](https://imgur.com/kaLx4lM)
+![Edit](https://i.imgur.com/kaLx4lMm.png)
