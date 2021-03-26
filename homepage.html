@@ -94,13 +94,6 @@
               box-shadow: none;
             "
           />
-
-          <style>
-            input[type="text"]::placeholder {
-              text-align: center;
-              text-indent: 10%;
-            }
-          </style>
           <div class="input-group-append">
             <button
               id="button-addon1"
@@ -124,12 +117,63 @@
     <br /><br />
     <div
       class="Container"
-      style="margin-top: 15px; margin-left: 15px; margin-right: 15px"
+      style="
+        margin-top: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding-bottom: 150px;
+      "
       id="Container"
     >
       <div class="row mt-5 mb-5" id="row1">
         <div class="col-sm-3 mx-auto">
           <div class="card shadow-5-strong" id="card1">
+            <div
+              class="bg-image hover-overlay ripple"
+              data-mdb-ripple-color="light"
+            >
+              <img
+                id="card1Link"
+                src="https://picsum.photos/id/29/600"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.15)"
+                ></div>
+              </a>
+            </div>
+            <div class="card-body">
+              <div class="dropdown">
+                <button
+                  type="dropdown"
+                  style="position: relative; float: right; box-shadow: none"
+                  class="btn btn-primary-link"
+                  data-mdb-toggle="dropdown"
+                  data-mdb-target="#modalCard1"
+                >
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <div class="dropdown-menu aria-labelledby=">
+                  <a
+                    class="dropdown-item"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#modalCard1"
+                    >Edit</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#modalCard1Delete"
+                    >Delete</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    onclick="readMore(this)"
+                    id="readmore1"
+                    >Read More</a
+                  >
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                     <img id="card1Link" src="https://picsum.photos/id/29/600" class="img-fluid">
                     <a href="#!">
@@ -157,13 +201,112 @@ earum voluptates et aut adipisci ea maiores voluptas maxime</span>
                     
                     <p style="font-style: italic;font-size:small;">Due on 2021-01-01</p>
                     <!-- Button trigger modal -->
-                    
-
-
                 </div>
-            </div>
-        </div>
+              </div>
+              <h5 class="card-title" id="card1Title" style="padding-right: 5px">
+                doloremque illum aliquid sunt
+              </h5>
+              <p class="card-text" id="card1Text">
+                deserunt eos nobis a<span id="dots1">...</span
+                ><span style="display: none" id="more1"
+                  >speriores et hic est debitis repellat molestiae optio nihil
+                  ratione ut eos beatae quibusdam distinctio maiores earum
+                  voluptates et aut adipisci ea maiores voluptas maxime</span
+                >
+              </p>
 
+              <p style="font-style: italic; font-size: small">
+                Due on 2021-01-01
+              </p>
+              <!-- Button trigger modal -->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 mx-auto">
+          <div class="card shadow-5-strong" id="card2">
+            <div
+              class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
+              data-mdb-ripple-color="light"
+            >
+              <img
+                id="card2Link"
+                src="https://picsum.photos/id/65/600"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.15)"
+                ></div>
+              </a>
+            </div>
+            <div class="card-body">
+              <div class="dropdown">
+                <button
+                  type="dropdown"
+                  style="position: relative; float: right; box-shadow: none"
+                  class="btn btn-primary-link"
+                  data-mdb-toggle="dropdown"
+                  data-mdb-target="#modalCard2"
+                >
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <div class="dropdown-menu">
+                  <a
+                    class="dropdown-item"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#modalCard2"
+                    >Edit</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#modalCard2Delete"
+                    >Delete</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    onclick="readMore(this)"
+                    id="readmore2"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+              <h5 class="card-title" id="card2Title" style="padding-right: 5px">
+                provident vel ut sit ratione est
+              </h5>
+              <p class="card-text" id="card2Text">
+                debitis et eaque non<span id="dots2">...</span
+                ><span style="display: none" id="more2">
+                  officia sed nesciunt pariatur vel voluptatem iste vero et ea
+                  numquam aut expedita ipsum nulla in voluptates omnis
+                  consequatur aut enim officiis in quam qui</span
+                >
+              </p>
+
+              <p style="font-style: italic; font-size: small">
+                Due on 2021-01-01
+              </p>
+              <!-- Button trigger modal -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for new card-->
+    <div class="modal fade" id="cardAdder" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog" style="max-width: 45%">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="modalCard1Title">Add Event</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-mdb-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
 <div class="col-sm-3 mx-auto">
             <div class="card shadow-5-strong" id="card2">
                 <div class="bg-image hover-overlay ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
@@ -216,7 +359,6 @@ voluptates omnis consequatur aut enim officiis in quam qui</span>
               aria-label="Close"
             ></button>
           </div>
-
           <div class="modal-body">
             <!--Added due date field and resized things -->
             <form>
