@@ -1,18 +1,17 @@
 var total_cards = 0;
 var row_number = 1;
-
 function updateCard(ele) {
   var i = ele.id;
-  var flag=0;
+  var flag = 0;
   i = i.charAt(10);
   var newcontent = document.getElementById("modalCard" + i + "Content").value;
   var content = document.getElementById("card" + i + "Text");
   if (newcontent.length >= 20) {
-    flag=1;
+    flag = 1;
     newcontent = newcontent.slice(0, 20) + `<span id="dots` + i + `">...</span><span style="display: none;" id="more` + i + `">` + newcontent.slice(20, newcontent.length) + `</span>`
   }
-  else{
-    flag=2;
+  else {
+    flag = 2;
   }
   content.innerHTML = newcontent;
   var newtitle = document.getElementById("modalCard" + i + "NewTitle");
@@ -26,12 +25,12 @@ function updateCard(ele) {
   var dots = document.getElementById("dots" + i);
   var moreText = document.getElementById("more" + i);
   var btn = document.getElementById("readmore" + i);
-  if (flag==1){
+  if (flag == 1) {
     dots.style.display = "inline";
     moreText.style.display = "none";
     btn.innerHTML = "Read more";
   }
-  else if (flag==2){
+  else if (flag == 2) {
     btn.innerHTML = "Read more";
   }
 
@@ -42,11 +41,11 @@ function newCard() {
   total_cards += 1;
   var title = document.getElementById("modalAdderTitle").value;
   var content = document.getElementById("modalAdderContent").value;
+  var content2 = document.getElementById("modalAdderContent").value;
   var link = document.getElementById("modalAdderLink").value;
   var date = document.getElementById("modalAdderDueDate").value;
   var ran = Math.floor(Math.random() * 100);
-  if (content == "") { content = postjson[ran].body; }
-  if (title == "") { title = postjson[ran].title; }
+  if ((content == "") && (title == "")) { content = postjson[ran].body; title = postjson[ran].title; }
   if (content.length >= 20) {
     content2 = content.slice(0, 20) + `<span id="dots` + total_cards.toString() + `">...</span><span style="display: none;" id="more` + total_cards.toString() + `">` + content.slice(20, content.length) + `</span>`
   }
@@ -316,3 +315,4 @@ function readMore(ele) {
     btn.innerHTML = "Read less";
   }
 }
+setTimeout(function(){newCard();newCard();},100);
