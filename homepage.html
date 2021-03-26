@@ -1,331 +1,582 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 
     <title>Note taker</title>
     <!-- MDB -->
     <link href="./bootstrap/css/mdb.min.css" rel="stylesheet" />
-    
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css"
+    />
 
     <!-- CSS file  -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
     <!-- popper -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- MDB -->
     <script src="./bootstrap/js/mdb.min.js"></script>
+  </head>
 
-
-</head>
-
-<body id="body" style="background: url(./img/img2.png); background-size: cover;">
-
+  <body
+    id="body"
+    style="background: url(./img/img2.png); background-size: cover"
+  >
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg" style="background-color: rgb(49, 43, 30);">
-        <!-- Container wrapper -->
-        <div class="container-fluid-nav text-center">
-            <!-- Navbar brand -->
-            <a class="navbar-brand" style="margin-left: 12px;" href="#" style="">Note Taker Alpha</a>
-            </div>
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left links -->
-                <ul class=" navbar-nav me-auto mb-2 mb-lg-0">
-                    <l class=" navbar-nav navbar-right>
-                    <li class="nav-item">
+    <nav
+      class="navbar navbar-expand-lg"
+      style="background-color: rgb(49, 43, 30)"
+    >
+      <!-- Container wrapper -->
+      <div class="container-fluid-nav text-center">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" style="margin-left: 12px; color: #fff" href="#"
+          >Note Taker Alpha</a
+        >
+      </div>
+      <!-- Collapsible wrapper -->
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="navbar-nav navbar-right"></li>
+        <li class="nav-item">
+          <button
+            type="button"
+            class="btn btn-warning"
+            data-mdb-toggle="modal"
+            data-mdb-target="#cardAdder"
+            style="color: rgb(49, 43, 30)"
+          >
+            <strong>New Note</strong>
+          </button>
+        </li>
+      </ul>
+    </nav>
 
-                        <button type="button" class="btn btn-warning" data-mdb-toggle="modal"
-                            data-mdb-target="#cardAdder" style="color: rgb(49, 43, 30);">
-                            <strong>New Note</strong>
-                        </button>
+    <br />
+    <br />
 
-                    </li>
-                </ul>
-                </nav>
+    <!-- Left links -->
 
-                <br>
-                <br>
+    <!-- Search form -->
 
-                <!-- Left links -->
+    <form class="d-flex input-group justify-content-center" id="sform">
+      <div class="p-1 bg-dark pill shadow-sm mb-4 w-50">
+        <div class="input-group" style="margin-left: 5px">
+          <input
+            type="text"
+            placeholder="Card title"
+            id="squery"
+            aria-describedby="button-addon1"
+            class="form-control border-0"
+            onkeydown="press_enter(event)"
+            onkeyup="dynamic_search(event)"
+            autocomplete="off"
+            style="background-color: rgb(49, 43, 30)"
+          />
 
-                <!-- Search form -->
-
-
-                <form class="d-flex input-group justify-content-center" id="sform"
-                    div class="form-group col-md-4">
-
-                    <div class="p-1 bg-dark rounded rounded-pill shadow-sm mb-4 w-50">
-                        <div class="input-group" style="margin-left: 5px;">
-                          <input type="text" placeholder="Card title" id="squery" aria-describedby="button-addon1" class="form-control border-0" onkeydown="press_enter(event)" onkeyup="dynamic_search(event)" autocomplete="off" style="background-color: rgb(49, 43, 30);">
-
-                          <style>
-                              input[type="text"]::placeholder
-                              {
-                                  text-align:center;
-                                  text-indent: 10%;
-                              }
-                          </style>
-                          <div class="input-group-append">
-                            <button id="button-addon1" type="button" class="btn btn-link" onclick="dynamic_search(event)" style="border-end-end-radius: 30%;" ><i class="fa fa-search" style="color: #e0af00;"></i>
-                            </button>
-
-                        </div>
-                        </div>
-                      </div>
-                    </form>
-
-
-
-                    <div id="no_matches" style="text-align: center;">
-
-                    </div>
-
-            </div>
-
-
-                        <br>
-
-
-        <!-- Container wrapper -->
-    <br><br>
-    <div class="Container" style="margin-top: 15px; margin-left: 15px; margin-right: 15px;" id= "Container">
-        <div class="row mt-5 mb-5" id="row1" >
-            <div class="col-sm-2 mx-auto">
-                <div class="card" id="card1">
-                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                        <img id="card1Link" src="https://picsum.photos/id/91/600" class="img-fluid">
-                        <a href="#!">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title" id="card1Title">nesciunt quas odio</h5>
-                        <p class="card-text" id="card1Text">
-                            repudiandae veniam q<span id="dots1">...</span><span style="display: none;" id="more1">uaerat sunt sed
-                            alias aut fugiat sit autem sed est
-                            voluptatem omnis possimus esse voluptatibus quis
-                            est aut tenetur dolor neque</span>
-                        </p>
-                        <!-- Button trigger modal -->
-                        <div class="dropdown">
-                        <button type="dropdown" style="position: relative; float: right;" class="btn btn-primary-link" dropdown-toggle"="" data-mdb-toggle="dropdown" data-mdb-target="#modalCard1"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16" class="iconify" data-icon="bi-three-dots-vertical" data-inline="false" style="transform: rotate(360deg);"><g fill="currentColor"><path d="M9.5 13a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0z"></path></g></svg></button>
-                        <div class="dropdown-menu aria-labelledby=" dropdownmenubutton"="">
-                            <a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard1">Edit</a>
-                            <a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard1Delete" "="">Delete</a>
-                            <a class="dropdown-item" href="#" onclick="readMore(this)" id="readmore1" "="">Read More</a> 
-                            
-                    
-                    </div></div>
-    
-    
-    
-    
-    
-    
-              <!-- The delete button has to be fixed now it works as an Edit button  -->
-    
-    
-                    </div>
-                </div>
-            </div>
-        
-            <div class="col-sm-2 mx-auto">
-                <div class="card" id="card2">
-                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                        <img id="card2Link" src="https://picsum.photos/id/92/600" class="img-fluid">
-                        <a href="#!">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title" id="card2Title">sint soluta et vel magnam aut ut sed qui</h5>
-                        <p class="card-text" id="card2Text">
-                            repellat aut aperiam<span id="dots2">...</span><span style="display: none;" id="more2"> totam temporibus autem et
-                            architecto magnam ut
-                            consequatur qui cupiditate rerum quia soluta dignissimos nihil iure
-                            tempore quas est</span>
-                        </p>
-                        <!-- Button trigger modal -->
-                        <div class="dropdown">
-                        <button type="dropdown" style="position: relative; float: right;" class="btn btn-primary-link" dropdown-toggle"="" data-mdb-toggle="dropdown" data-mdb-target="#modalCard2"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16" class="iconify" data-icon="bi-three-dots-vertical" data-inline="false" style="transform: rotate(360deg);"><g fill="currentColor"><path d="M9.5 13a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0z"></path></g></svg></button>
-                        <div class="dropdown-menu aria-labelledby=" dropdownmenubutton"="">
-                            <a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard2">Edit</a>
-                            <a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#modalCard2Delete" "="">Delete</a>
-                            <a class="dropdown-item" href="#" onclick="readMore(this)" id="readmore2" "="">Read More</a> 
-                            
-                    
-                    </div></div>
-    
-    
-    
-    
-    
-    
-              <!-- The delete button has to be fixed now it works as an Edit button  -->
-    
-    
-                    </div>
-                </div>
-            </div>
+          <style>
+            input[type='text']::placeholder {
+              text-align: center;
+              text-indent: 10%;
+            }
+          </style>
+          <div class="input-group-append">
+            <button
+              id="button-addon1"
+              type="button"
+              class="btn btn-link"
+              onclick="dynamic_search(event)"
+              style="border-end-end-radius: 30%"
+            >
+              <i class="fa fa-search" style="color: #e0af00"></i>
+            </button>
+          </div>
         </div>
-                  </div>
-    
-              
+      </div>
+    </form>
+
+    <div id="no_matches" style="text-align: center"></div>
+
+    <br />
+
+    <!-- Container wrapper -->
+    <br /><br />
+    <div
+      class="Container"
+      style="margin-top: 15px; margin-left: 15px; margin-right: 15px"
+      id="Container"
+    >
+      <div class="row mt-5 mb-5" id="row1">
+        <div class="col-sm-2 mx-auto">
+          <div class="card" id="card1">
+            <div
+              class="bg-image hover-overlay ripple"
+              data-mdb-ripple-color="light"
+            >
+              <img
+                id="card1Link"
+                src="https://picsum.photos/id/91/600"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.15)"
+                ></div>
+              </a>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title" id="card1Title">nesciunt quas odio</h5>
+              <p class="card-text" id="card1Text">
+                repudiandae veniam q<span id="dots1">...</span
+                ><span style="display: none" id="more1"
+                  >uaerat sunt sed alias aut fugiat sit autem sed est voluptatem
+                  omnis possimus esse voluptatibus quis est aut tenetur dolor
+                  neque</span
+                >
+              </p>
+              <!-- Button trigger modal -->
+              <div class="dropdown">
+                <button
+                  type="dropdown"
+                  style="position: relative; float: right"
+                  class="btn btn-primary-link"
+                  dropdown-toggle
+                  data-mdb-toggle="dropdown"
+                  data-mdb-target="#modalCard1"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true"
+                    focusable="false"
+                    width="1em"
+                    height="1em"
+                    preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 16 16"
+                    class="iconify"
+                    data-icon="bi-three-dots-vertical"
+                    data-inline="false"
+                    style="transform: rotate(360deg)"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M9.5 13a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0z"
+                      ></path>
+                    </g>
+                  </svg>
+                </button>
+                <div class="dropdown-menu aria-labelledby=" dropdownmenubutton>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#modalCard1"
+                    >Edit</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#modalCard1Delete"
+                    >Delete</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="readMore(this)"
+                    id="readmore1"
+                    >Read More</a
+                  >
                 </div>
               </div>
 
+              <!-- The delete button has to be fixed now it works as an Edit button  -->
+            </div>
           </div>
+        </div>
+
+        <div class="col-sm-2 mx-auto">
+          <div class="card" id="card2">
+            <div
+              class="bg-image hover-overlay ripple"
+              data-mdb-ripple-color="light"
+            >
+              <img
+                id="card2Link"
+                src="https://picsum.photos/id/92/600"
+                class="img-fluid"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.15)"
+                ></div>
+              </a>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title" id="card2Title">
+                sint soluta et vel magnam aut ut sed qui
+              </h5>
+              <p class="card-text" id="card2Text">
+                repellat aut aperiam<span id="dots2">...</span
+                ><span style="display: none" id="more2">
+                  totam temporibus autem et architecto magnam ut consequatur qui
+                  cupiditate rerum quia soluta dignissimos nihil iure tempore
+                  quas est</span
+                >
+              </p>
+              <!-- Button trigger modal -->
+              <div class="dropdown">
+                <button
+                  type="dropdown"
+                  style="position: relative; float: right"
+                  class="btn btn-primary-link"
+                  dropdown-toggle
+                  data-mdb-toggle="dropdown"
+                  data-mdb-target="#modalCard2"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true"
+                    focusable="false"
+                    width="1em"
+                    height="1em"
+                    preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 16 16"
+                    class="iconify"
+                    data-icon="bi-three-dots-vertical"
+                    data-inline="false"
+                    style="transform: rotate(360deg)"
+                  >
+                    <g fill="currentColor">
+                      <path
+                        d="M9.5 13a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0z"
+                      ></path>
+                    </g>
+                  </svg>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownmenubutton">
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#modalCard2"
+                    >Edit</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#modalCard2Delete"
+                    >Delete</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="readMore(this)"
+                    id="readmore2"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+
+              <!-- The delete button has to be fixed now it works as an Edit button  -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal for new card-->
     <div class="modal fade" id="cardAdder" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 45%;">
-            <div class="modal-content">
-                <div class="modal-header border-0 ">
-                    <h5 class="modal-title" id="modalCard1Title">Add Event</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
+      <div class="modal-dialog" style="max-width: 45%">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="modalCard1Title">Add Event</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-mdb-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
 
-                <div class="modal-body">
-                    <!--Added due date field and resized things -->
-                    <form>
-                        <label for="modalAdderTitle">Title</label><br>
-                        <input type="text" id="modalAdderTitle" name="modalAdderTitle" size="50"   value=""><br><br>
-                        <label for="modalAdderContent">Description</label><br>
-                        <textarea class="form-control" id="modalAdderContent" rows="4" style="padding-left: 5px;"></textarea><br>
-                        <label for="modalAdderDueDate"> Due date</label><br>
-                        <input type="date" id="modalAdderDueDate" name="modalAdderLink" size="0" value=""><br><br>
-                        <label for="modalAdderLink">Note image link</label><br>
-                        <input type="text" id="modalAdderLink" name="modalAdderLink" size="50" value=""><br>
-                    </form>
-
-                </div>
-                <div class="modal-footer border-0">
-
-
-                    <button type="button" class="btn btn-primary me-auto" onclick="newCard()" data-mdb-dismiss="modal">Create event</button>
-
-                </div>
-            </div>
+          <div class="modal-body">
+            <!--Added due date field and resized things -->
+            <form>
+              <label for="modalAdderTitle">Title</label><br />
+              <input
+                type="text"
+                id="modalAdderTitle"
+                name="modalAdderTitle"
+                size="50"
+                value=""
+              /><br /><br />
+              <label for="modalAdderContent">Description</label><br />
+              <textarea
+                class="form-control"
+                id="modalAdderContent"
+                rows="4"
+                style="padding-left: 5px"
+              ></textarea
+              ><br />
+              <label for="modalAdderDueDate"> Due date</label><br />
+              <input
+                type="date"
+                id="modalAdderDueDate"
+                name="modalAdderLink"
+                size="0"
+                value=""
+              /><br /><br />
+              <label for="modalAdderLink">Note image link</label><br />
+              <input
+                type="text"
+                id="modalAdderLink"
+                name="modalAdderLink"
+                size="50"
+                value=""
+              /><br />
+            </form>
+          </div>
+          <div class="modal-footer border-0">
+            <button
+              type="button"
+              class="btn btn-primary me-auto"
+              onclick="newCard()"
+              data-mdb-dismiss="modal"
+            >
+              Create event
+            </button>
+          </div>
         </div>
+      </div>
     </div>
     <div class="modal fade" id="modalCard1" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="modalCard1Title">nesciunt quas odio</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                    <label for="modalEditTitle">Title</label><br>
-                    <input type="text" id="modalCard1NewTitle" name="modalEditTitle" size="50" value="nesciunt quas odio"><br><br>
-                    <label for="modalEditContent">Description</label><br>
-                    <textarea class="form-control" id="modalCard1Content" rows="4">repudiandae veniam quaerat sunt sedalias aut fugiat sit autem sed estvoluptatem omnis possimus esse voluptatibus quisest aut tenetur dolor neque</textarea><br>
-                    <label for="modalEditDueDate"> Due date</label><br>
-                    <input type="date" id="modalCard1DueDate" name="modalEditDueDate" size="50" value=""><br><br>
-                    <label for="modalEditLink">Note image link</label><br>
-                    <input type="text" id="modalCard1Link" name="modalEditLink" size="50" value="https://picsum.photos/id/91/600"><br>
-    
-                    </form>
-    
-                </div>
-                <div class="modal-footer border-0">
-    
-                    <button type="button" class="btn btn-primary" id="updateCard1Button" onclick="updateCard(this)" data-mdb-dismiss="modal">Save changes</button>
-                </div>
-            </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="modalCard1Title">nesciunt quas odio</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-mdb-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <label for="modalEditTitle">Title</label><br />
+              <input
+                type="text"
+                id="modalCard1NewTitle"
+                name="modalEditTitle"
+                size="50"
+                value="nesciunt quas odio"
+              /><br /><br />
+              <label for="modalEditContent">Description</label><br />
+              <textarea class="form-control" id="modalCard1Content" rows="4">
+repudiandae veniam quaerat sunt sedalias aut fugiat sit autem sed estvoluptatem omnis possimus esse voluptatibus quisest aut tenetur dolor neque</textarea
+              ><br />
+              <label for="modalEditDueDate"> Due date</label><br />
+              <input
+                type="date"
+                id="modalCard1DueDate"
+                name="modalEditDueDate"
+                size="50"
+                value=""
+              /><br /><br />
+              <label for="modalEditLink">Note image link</label><br />
+              <input
+                type="text"
+                id="modalCard1Link"
+                name="modalEditLink"
+                size="50"
+                value="https://picsum.photos/id/91/600"
+              /><br />
+            </form>
+          </div>
+          <div class="modal-footer border-0">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="updateCard1Button"
+              onclick="updateCard(this)"
+              data-mdb-dismiss="modal"
+            >
+              Save changes
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalCard1Delete"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="modalCard1DeleteTitle">
+              nesciunt quas odio
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-mdb-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this event?
+          </div>
+          <div class="modal-footer border-0">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="exitCard1Button"
+              data-mdb-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="deleteCard1Button"
+              onclick="delCard(this)"
+              data-mdb-dismiss="modal"
+            >
+              DELETE
+            </button>
+          </div>
         </div>
-        
-        <div class="modal fade" id="modalCard1Delete" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="modalCard1DeleteTitle">nesciunt quas odio</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                Are you sure you want to delete this event?
-                </div>
-                <div class="modal-footer border-0">
-    
-                    <button type="button" class="btn btn-primary" id="exitCard1Button" data-mdb-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="deleteCard1Button" onclick="delCard(this)" data-mdb-dismiss="modal">DELETE</button>
-                </div>
-            </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalCard2" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="modalCard2Title">
+              sint soluta et vel magnam aut ut sed qui
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-mdb-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <label for="modalEditTitle">Title</label><br />
+              <input
+                type="text"
+                id="modalCard2NewTitle"
+                name="modalEditTitle"
+                size="50"
+                value="sint soluta et vel magnam aut ut sed qui"
+              /><br /><br />
+              <label for="modalEditContent">Description</label><br />
+              <textarea class="form-control" id="modalCard2Content" rows="4">
+repellat aut aperiam totam temporibus autem etarchitecto magnam utconsequatur qui cupiditate rerum quia soluta dignissimos nihil iuretempore quas est</textarea
+              ><br />
+              <label for="modalEditDueDate"> Due date</label><br />
+              <input
+                type="date"
+                id="modalCard2DueDate"
+                name="modalEditDueDate"
+                size="50"
+                value=""
+              /><br /><br />
+              <label for="modalEditLink">Note image link</label><br />
+              <input
+                type="text"
+                id="modalCard2Link"
+                name="modalEditLink"
+                size="50"
+                value="https://picsum.photos/id/92/600"
+              /><br />
+            </form>
+          </div>
+          <div class="modal-footer border-0">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="updateCard2Button"
+              onclick="updateCard(this)"
+              data-mdb-dismiss="modal"
+            >
+              Save changes
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalCard2Delete"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="modalCard2DeleteTitle">
+              sint soluta et vel magnam aut ut sed qui
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-mdb-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this event?
+          </div>
+          <div class="modal-footer border-0">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="exitCard2Button"
+              data-mdb-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="deleteCard2Button"
+              onclick="delCard(this)"
+              data-mdb-dismiss="modal"
+            >
+              DELETE
+            </button>
+          </div>
         </div>
-        
-        <div class="modal fade" id="modalCard2" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="modalCard2Title">sint soluta et vel magnam aut ut sed qui</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                    <label for="modalEditTitle">Title</label><br>
-                    <input type="text" id="modalCard2NewTitle" name="modalEditTitle" size="50" value="sint soluta et vel magnam aut ut sed qui"><br><br>
-                    <label for="modalEditContent">Description</label><br>
-                    <textarea class="form-control" id="modalCard2Content" rows="4">repellat aut aperiam totam temporibus autem etarchitecto magnam utconsequatur qui cupiditate rerum quia soluta dignissimos nihil iuretempore quas est</textarea><br>
-                    <label for="modalEditDueDate"> Due date</label><br>
-                    <input type="date" id="modalCard2DueDate" name="modalEditDueDate" size="50" value=""><br><br>
-                    <label for="modalEditLink">Note image link</label><br>
-                    <input type="text" id="modalCard2Link" name="modalEditLink" size="50" value="https://picsum.photos/id/92/600"><br>
-    
-                    </form>
-    
-                </div>
-                <div class="modal-footer border-0">
-    
-                    <button type="button" class="btn btn-primary" id="updateCard2Button" onclick="updateCard(this)" data-mdb-dismiss="modal">Save changes</button>
-                </div>
-            </div>
-        </div>
-        </div>
-        
-        <div class="modal fade" id="modalCard2Delete" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="modalCard2DeleteTitle">sint soluta et vel magnam aut ut sed qui</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                Are you sure you want to delete this event?
-                </div>
-                <div class="modal-footer border-0">
-    
-                    <button type="button" class="btn btn-primary" id="exitCard2Button" data-mdb-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="deleteCard2Button" onclick="delCard(this)" data-mdb-dismiss="modal">DELETE</button>
-                </div>
-            </div>
-        </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-</body>
-<script src="main.js"></script>
-
+      </div>
+    </div>
+  </body>
+  <script src="main.js"></script>
 </html>
